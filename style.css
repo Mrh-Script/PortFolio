@@ -36,34 +36,88 @@ body {
   justify-content: space-between;
   padding: 14px 5%;
 }
+
+/* Logo */
 .logo { 
   color: var(--white); 
   font-weight: 700; 
   font-size: 22px;
 }
+
+/* Nav links */
 .nav-links { 
-  list-style:none; 
-  display:flex; 
-  gap:18px; 
-  align-items:center; 
+  list-style: none; 
+  display: flex; 
+  gap: 18px; 
+  align-items: center; 
 }
 
-.nav-links a{
+.nav-links a {
   color: var(--white); 
-  text-decoration:none; 
-  font-weight:600; 
-  padding:6px 8px; 
-  border-radius:6px;
+  text-decoration: none; 
+  font-weight: 600; 
+  padding: 6px 8px; 
+  border-radius: 6px;
   transition: 0.2s;
 }
 
 .nav-links a:hover {
   background-color: orangered;
 }
+
 .nav-links a.active { 
   background: var(--white);
   color: var(--blakish);
 }
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--white);
+}
+
+/* Hide toggle checkbox */
+.nav-toggle {
+  display: none;
+}
+
+/* Responsive nav for small screens */
+@media screen and (max-width: 768px) {
+  /* Hide nav links by default */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--blakish);
+    position: absolute;
+    top: 60px; /* Adjust according to header height */
+    left: 0;
+    padding: 10px 0;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* Show nav when checkbox is checked */
+  .nav-toggle:checked + .hamburger + .nav-links {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+  }
+}
+
 
 /* Buttons */
 .about-buttons {
@@ -168,34 +222,104 @@ body {
 
 /* Education */
 .education { 
-  padding:60px 5%; 
+  padding: 60px 5%; 
   background: var(--primary); 
 }
+
 .education h2 { 
   color: var(--blakish); 
-  text-align:center; 
-  margin-bottom:18px; 
-  font-size:42px;
+  text-align: center; 
+  margin-bottom: 18px; 
+  font-size: 42px;
 }
 
+/* Grid layout */
 .edu-grid { 
-  display:grid; 
-  gap:20px; 
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); 
-  margin-top:18px; 
+  display: grid; 
+  gap: 20px; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  margin-top: 18px; 
 }
 
+/* Education card styling */
 .edu-card {
-  display:flex; gap:18px; align-items:center;
-  background: var(--white); padding:18px; border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  position: relative;
   border: 3px solid black;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
 }
-.edu-card img { 
-  width:80px; 
-  height:80px; 
-  object-fit:contain; 
-  border-radius:8px; 
+
+/* Card content (label) */
+.card-content {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 12px;
+  background: inherit; 
+  transition: background 0.3s;
+}
+
+/* Card image */
+.card-content img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Original content visible by default */
+.original {
+  display: block;
+}
+
+/* Result hidden by default */
+.result {
+  display: none;
+  color: black;
+  font-weight: bold;
+  text-align: left;  
+  flex: 1;
+  align-self: flex-start;
+}
+
+
+/* Hidden checkbox */
+.toggle-checkbox {
+  display: none;
+}
+
+/* Toggle behavior */
+.toggle-checkbox:checked + .card-content .original {
+  display: none;
+}
+
+.toggle-checkbox:checked + .card-content .result {
+  display: block;
+}
+
+/* Hint text */
+.edu-card::after {
+  content: "Click on the Logo to see result";
+  font-size: 12px;
+  color: #555;
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  opacity: 0.7;
+}
+
+/* Hover effects */
+.edu-card:hover {
+  transform: scale(1.02);
+  background: lightsalmon; 
+}
+
+.edu-card:hover .card-content {
+  background: transparent; 
 }
 
 /* Projects */
@@ -237,9 +361,9 @@ body {
   transform: translateY(-5px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  background-color: black;
-  color:white;
-  border: 2px solid white;
+  background-color: orangered;
+  color:black;
+  border: 3px solid black;
 }
 
 .project-lang {
