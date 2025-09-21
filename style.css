@@ -216,7 +216,7 @@ body {
 .about-right .profile-pic {
   width: 320px; height: 320px;
   border-radius: 25% 75% 50% 50% / 50% 40% 60% 50%;
-  border:6px solid var(--primary);
+  border:6px solid var(--blakish);
   box-shadow: 0 12px 28px rgba(0,0,0,0.3);
 }
 
@@ -302,7 +302,7 @@ body {
 
 /* Change background color when tapped (checked) */
 .toggle-checkbox:checked + .card-content {
-  background: #c7efcf; /* Highlight color when expanded */
+  background: #c7efcf; 
 }
 
 /* Keep hover effect while expanded */
@@ -325,10 +325,12 @@ body {
 .edu-card:hover {
   transform: scale(1.02);
   background: lightsalmon; 
+  cursor : pointer;
 }
 
 .edu-card:hover .card-content {
   background: transparent; 
+  cursor : pointer;
 }
 
 
@@ -359,6 +361,19 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
   border: 3px solid black;
+  position: relative;   /* needed for ::after positioning */
+}
+
+/* Add message in bottom-right of each card */
+.project-card::after {
+  content: "Tap to explore.";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 13px;
+  font-style: italic;
+  color: #555;
+  opacity: 0.8;
 }
 
 .project-link {
@@ -372,7 +387,7 @@ body {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   background-color: orangered;
-  color:black;
+  color: black;
   border: 3px solid black;
 }
 
@@ -427,12 +442,79 @@ body {
   background: orangered; 
   color: black;
   border: 3px solid black; 
+  cursor : not-allowed;
 }
 .skill-card i { 
   font-size:28px; 
   color: var(--primary); 
   margin-bottom:12px; 
   display:block; 
+}
+
+/* Activities */
+.activities { 
+  padding: 60px 5%; 
+  background: var(--primary); 
+}
+
+.activities h2 { 
+  color: var(--blakish); 
+  text-align: center; 
+  margin-bottom: 18px; 
+  font-size: 42px;
+}
+
+/* Grid layout */
+.act-grid { 
+  display: grid; 
+  gap: 20px; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  margin-top: 18px; 
+}
+
+/* Activities card styling */
+.act-card {
+  position: relative;
+  border: 3px solid black;
+  border-radius: 12px;
+  background: var(--light-gray);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s, background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  cursor: not-allowed;
+}
+
+/* Card image */
+.act-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid black;
+}
+
+/* Card text */
+.act-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  color: var(--blakish);
+}
+
+.act-card p {
+  margin: 3px 0;
+  color: black;
+  font-size: 15px;
+}
+
+/* Hover effects */
+.act-card:hover {
+  transform: translateY(-6px);
+  background: orangered; 
+  color: black;
+  border: 3px solid black;
 }
 
 
@@ -453,6 +535,7 @@ body {
 
 .social-links {
   display: flex;
+  flex-wrap: wrap;    
   gap: 28px;
   justify-content: center;
   margin-top: 28px;
@@ -477,25 +560,47 @@ body {
 }
 
 /* Specific hover colors */
-.social-links a.facebook:hover {
-  background: var(--secondary); 
+.social-links a.facebook:hover { background: var(--secondary); }
+.social-links a.linkedin:hover { background: var(--secondary); }
+.social-links a.github:hover   { background: #000; }
+.social-links a.gmail:hover    { background: maroon; }
+.social-links a.phone:hover    { background: green; }
+
+/* ✅ Responsive Fixes */
+@media (max-width: 768px) {
+  .contact h2 {
+    font-size: 32px;
+  }
+
+  .social-links {
+    gap: 18px;
+    font-size: 26px;
+  }
+
+  .social-links a {
+    padding: 14px;
+  }
 }
 
-.social-links a.linkedin:hover {
-  background: var(--secondary); 
+@media (max-width: 480px) {
+  .contact {
+    padding: 50px 5%;
+  }
+
+  .contact h2 {
+    font-size: 26px;
+  }
+
+  .social-links {
+    gap: 14px;
+    font-size: 22px;
+  }
+
+  .social-links a {
+    padding: 12px;
+  }
 }
 
-.social-links a.github:hover {
-  background: #000;             
-}
-
-.social-links a.gmail:hover {
-  background: maroon;         
-}
-
-.social-links a.phone:hover {
-  background: green;            
-}
 
 
 
